@@ -5,7 +5,7 @@ import re
 import time
 from PyQt5 import QtCore
 
-file_content = "/** -1：教学版, 0: 基础版, 1: 高级版, 2: 专家版 */\n" \
+file_content = "/** -1：教学版, 0: 基础版, 1: 高级版, 2: 高级联网版, 3: 专家版 */\n" \
                "module.exports = {topLevel: 2,debug: 1,devTools: 0};"
 
 
@@ -20,7 +20,7 @@ class FileOperate(QtCore.QThread):
 
     def create_file(self):
         """"""
-        edition_dict = {'教学版': -1, '基础版': 0, '高级版': 1, '专家版': 2}
+        edition_dict = {'教学版': -1, '基础版': 0, '高级版': 1, '高级联网版': 2, '专家版': 3}
         edition_value = edition_dict.get(self.edition)
         model_list = ['关闭', '打开']
         model_value = model_list[self.model]

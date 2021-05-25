@@ -17,8 +17,8 @@ with open('temp.ico', 'wb') as file:
 class SwitchClient(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.setFixedSize(600, 140)
-        self.setWindowTitle('鉴定系统版本切换器_20210324')
+        self.setFixedSize(600, 135)
+        self.setWindowTitle('鉴定系统版本切换器_20210524')
         self.setWindowIcon(QtGui.QIcon('temp.ico'))
         os.remove('temp.ico')
         # 版本
@@ -27,12 +27,14 @@ class SwitchClient(QtWidgets.QWidget):
         self.base_edition_radio_button = QtWidgets.QRadioButton('基础版', self)
         self.premium_edition_radio_button = QtWidgets.QRadioButton('高级版', self)
         self.premium_edition_radio_button.setChecked(True)
+        self.premium_network_edition_radio_button = QtWidgets.QRadioButton('高级联网版', self)
         self.expert_edition_radio_button = QtWidgets.QRadioButton('专家版', self)
         self.edition_button_group = QtWidgets.QButtonGroup()
         self.edition_button_group.addButton(self.teaching_edition_radio_button, 0)
         self.edition_button_group.addButton(self.base_edition_radio_button, 1)
         self.edition_button_group.addButton(self.premium_edition_radio_button, 2)
-        self.edition_button_group.addButton(self.expert_edition_radio_button, 3)
+        self.edition_button_group.addButton(self.premium_network_edition_radio_button, 3)
+        self.edition_button_group.addButton(self.expert_edition_radio_button, 4)
         # 开发者模式
         self.model_label = QtWidgets.QLabel('开发者模式：')
         self.off_radio_button = QtWidgets.QRadioButton('关闭', self)
@@ -70,7 +72,8 @@ class SwitchClient(QtWidgets.QWidget):
         left_layout.addWidget(self.teaching_edition_radio_button, 0, 1, 1, 1)
         left_layout.addWidget(self.base_edition_radio_button, 0, 2, 1, 1)
         left_layout.addWidget(self.premium_edition_radio_button, 0, 3, 1, 1)
-        left_layout.addWidget(self.expert_edition_radio_button, 0, 4, 1, 1)
+        left_layout.addWidget(self.premium_network_edition_radio_button, 0, 4, 1, 1)
+        left_layout.addWidget(self.expert_edition_radio_button, 0, 5, 1, 1)
         left_layout.addWidget(self.model_label, 1, 0, 1, 1)
         self.model_label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         left_layout.addWidget(self.off_radio_button, 1, 1, 1, 1)
@@ -101,6 +104,8 @@ class SwitchClient(QtWidgets.QWidget):
         elif edition == 2:
             edition = "高级版"
         elif edition == 3:
+            edition = "高级联网版"
+        elif edition == 4:
             edition = "专家版"
         model = self.model_button_group.checkedId()
         save_path = self.install_dir_qle.text()
